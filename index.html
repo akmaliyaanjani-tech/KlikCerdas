@@ -1,324 +1,185 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Klik Cerdas - Waspada Penipuan Digital</title>
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+menuToggle.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute("aria-label", isOpen ? "Tutup menu" : "Buka menu");
+});
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7fc;
-            color: #26334d;
-            line-height: 1.7;
-        }
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  });
+});
 
-        header {
-            background-color: #14264b;
-            color: white;
-            padding: 25px 8%;
-        }
+document.querySelectorAll("[data-tip]").forEach(button => {
+  button.addEventListener("click", () => {
+    const reveal = document.getElementById("tipReveal");
+    reveal.textContent = button.dataset.tip;
+    reveal.hidden = false;
+    reveal.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+});
 
-        header h1 {
-            font-size: 32px;
-        }
+const questions = [
+  {
+    question: "Kamu menerima pesan bahwa akunmu akan diblokir jika tidak mengeklik tautan dalam 10 menit. Apa yang sebaiknya dilakukan?",
+    answers: [
+      "Klik tautannya segera agar akun tidak diblokir.",
+      "Balas pesan dan kirim kode OTP untuk verifikasi.",
+      "Jangan klik; periksa akun melalui aplikasi atau situs resmi.",
+      "Teruskan pesan itu ke semua teman."
+    ],
+    correct: 2,
+    explanation: "Benar. Pesan mendesak bisa menjadi taktik penipu. Buka aplikasi atau situs resmi secara mandiri untuk memeriksa status akun."
+  },
+  {
+    question: "Seseorang mengaku petugas bank dan meminta kode OTP melalui telepon. Apa tindakan paling aman?",
+    answers: [
+      "Berikan OTP jika orang itu mengetahui nama lengkapmu.",
+      "Jangan berikan OTP; akhiri komunikasi dan hubungi bank melalui kanal resmi.",
+      "Kirim setengah kode OTP saja.",
+      "Kirim PIN agar identitasmu dapat dipastikan."
+    ],
+    correct: 1,
+    explanation: "Tepat. OTP, PIN, dan kata sandi adalah rahasia. Jangan membagikannya kepada orang lain, termasuk orang yang mengaku petugas."
+  },
+  {
+    question: "Kamu menemukan lowongan kerja dengan gaji sangat tinggi yang meminta biaya pendaftaran ke rekening pribadi. Apa yang sebaiknya dilakukan?",
+    answers: [
+      "Transfer segera sebelum lowongan ditutup.",
+      "Kirim foto identitas dan data rekening terlebih dahulu.",
+      "Verifikasi perusahaan melalui kanal resmi dan jangan transfer sebelum jelas.",
+      "Percaya karena informasinya dibagikan di grup ramai."
+    ],
+    correct: 2,
+    explanation: "Benar. Verifikasi perusahaan melalui kanal resmi. Permintaan biaya atau data sensitif yang tidak wajar merupakan tanda bahaya."
+  }
+];
 
-        header p {
-            color: #b9d9ff;
-        }
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
 
-        nav {
-            background-color: #203b70;
-            padding: 14px 8%;
-        }
+const questionCount = document.getElementById("questionCount");
+const progressPercent = document.getElementById("progressPercent");
+const progressFill = document.getElementById("progressFill");
+const questionText = document.getElementById("questionText");
+const answerList = document.getElementById("answerList");
+const quizFeedback = document.getElementById("quizFeedback");
+const scoreText = document.getElementById("scoreText");
+const nextQuestion = document.getElementById("nextQuestion");
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-right: 22px;
-            font-weight: bold;
-        }
+function renderQuestion() {
+  const q = questions[currentQuestion];
+  answered = false;
+  questionCount.textContent = `PERTANYAAN ${currentQuestion + 1} DARI ${questions.length}`;
+  const progress = Math.round(((currentQuestion + 1) / questions.length) * 100);
+  progressPercent.textContent = `${progress}%`;
+  progressFill.style.width = `${progress}%`;
+  questionText.textContent = q.question;
+  answerList.replaceChildren();
+  quizFeedback.hidden = true;
+  quizFeedback.textContent = "";
+  scoreText.textContent = "Pilih jawaban yang paling aman.";
+  nextQuestion.disabled = true;
+  nextQuestion.textContent = currentQuestion === questions.length - 1 ? "Lihat hasil →" : "Berikutnya →";
 
-        nav a:hover {
-            color: #75e3dc;
-        }
+  q.answers.forEach((answer, index) => {
+    const button = document.createElement("button");
+    button.className = "answer-option";
+    button.type = "button";
+    const letter = document.createElement("span");
+    letter.className = "option-letter";
+    letter.textContent = String.fromCharCode(65 + index);
+    const label = document.createElement("span");
+    label.textContent = answer;
+    button.append(letter, label);
+    button.addEventListener("click", () => selectAnswer(index));
+    answerList.append(button);
+  });
+}
 
-        .hero {
-            background: linear-gradient(135deg, #1b3470, #3978df);
-            color: white;
-            text-align: center;
-            padding: 65px 20px;
-        }
+function selectAnswer(selected) {
+  if (answered) return;
+  answered = true;
+  const q = questions[currentQuestion];
+  const options = answerList.querySelectorAll("button");
+  options.forEach((button, index) => {
+    button.disabled = true;
+    if (index === q.correct) button.classList.add("correct");
+    if (index === selected && index !== q.correct) button.classList.add("incorrect");
+  });
 
-        .hero h2 {
-            font-size: 36px;
-            margin-bottom: 15px;
-        }
+  if (selected === q.correct) {
+    score++;
+    quizFeedback.textContent = `Jawaban benar! ${q.explanation}`;
+  } else {
+    quizFeedback.textContent = `Belum tepat. ${q.explanation}`;
+  }
+  quizFeedback.hidden = false;
+  scoreText.textContent = `Skor sementara: ${score} dari ${currentQuestion + 1}`;
+  nextQuestion.disabled = false;
+}
 
-        .hero p {
-            max-width: 700px;
-            margin: auto;
-        }
+nextQuestion.addEventListener("click", () => {
+  if (!answered) return;
+  if (currentQuestion < questions.length - 1) {
+    currentQuestion++;
+    renderQuestion();
+  } else {
+    showResult();
+  }
+});
 
-        .container {
-            max-width: 1050px;
-            margin: 35px auto;
-            padding: 0 20px;
-        }
+function showResult() {
+  questionCount.textContent = "KUIS SELESAI";
+  progressPercent.textContent = "100%";
+  progressFill.style.width = "100%";
+  questionText.textContent = `Skor kamu ${score} dari ${questions.length}.`;
+  answerList.replaceChildren();
+  quizFeedback.hidden = false;
+  if (score === questions.length) {
+    quizFeedback.textContent = "Hebat! Kamu mengenali semua situasi dalam kuis ini. Tetap periksa informasi dan jangan pernah membagikan kode rahasia.";
+  } else if (score >= 2) {
+    quizFeedback.textContent = "Bagus! Kamu sudah memahami sebagian besar tanda bahaya. Baca kembali tips keamanan dan coba lagi jika ingin berlatih.";
+  } else {
+    quizFeedback.textContent = "Tidak apa-apa—kuis ini untuk belajar. Baca bagian Tips Aman, lalu ulangi kuis agar semakin terbiasa mengenali tanda penipuan.";
+  }
+  scoreText.textContent = "Kuis berjalan di perangkatmu; jawaban tidak dikirim ke server.";
+  nextQuestion.textContent = "Ulangi kuis ↻";
+  nextQuestion.disabled = false;
+  nextQuestion.onclick = () => {
+    currentQuestion = 0;
+    score = 0;
+    nextQuestion.onclick = null;
+    renderQuestion();
+  };
+}
 
-        .section-title {
-            color: #19366b;
-            margin-bottom: 18px;
-            font-size: 27px;
-        }
+document.getElementById("shareButton").addEventListener("click", async () => {
+  const shareData = {
+    title: "Klik Cerdas",
+    text: "Yuk, kenali phishing dan penipuan digital. Berhenti sejenak, periksa sebelum klik!",
+    url: window.location.href
+  };
+  const status = document.getElementById("shareStatus");
+  try {
+    if (navigator.share) {
+      await navigator.share(shareData);
+      status.textContent = "Terima kasih telah membantu menyebarkan edukasi keamanan digital.";
+    } else if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
+      status.textContent = "Teks kampanye dan tautan berhasil disalin. Bagikan kepada teman dan keluarga.";
+    } else {
+      status.textContent = "Salin alamat halaman ini dari bilah alamat browser, lalu bagikan kepada teman.";
+    }
+  } catch (error) {
+    if (error.name !== "AbortError") status.textContent = "Kamu bisa menyalin alamat halaman ini dan membagikannya secara manual.";
+  }
+});
 
-        .card {
-            background: white;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 14px rgba(20, 38, 75, 0.08);
-        }
-
-        .card h3 {
-            color: #2459ad;
-            margin-bottom: 10px;
-        }
-
-        .card ul,
-        .card ol {
-            padding-left: 22px;
-        }
-
-        .warning {
-            background: #fff4e5;
-            border-left: 5px solid #f0a43b;
-            padding: 18px;
-            border-radius: 8px;
-            margin-top: 15px;
-        }
-
-        .quiz-button {
-            background: #2865d7;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 7px;
-            cursor: pointer;
-            margin-top: 12px;
-            font-size: 15px;
-        }
-
-        .quiz-button:hover {
-            background: #194ba9;
-        }
-
-        #hasil-kuis {
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
-        footer {
-            background: #14264b;
-            color: white;
-            text-align: center;
-            padding: 25px 15px;
-            margin-top: 45px;
-        }
-
-        footer p {
-            margin: 5px 0;
-        }
-
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 26px;
-            }
-
-            .hero h2 {
-                font-size: 28px;
-            }
-
-            nav a {
-                display: inline-block;
-                margin: 5px 12px 5px 0;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-    <header>
-        <h1>Klik Cerdas</h1>
-        <p>Kenali Penipuan Sebelum Menjadi Korban</p>
-    </header>
-
-    <nav>
-        <a href="#beranda">Beranda</a>
-        <a href="#phishing">Kenali Phishing</a>
-        <a href="#tips">Tips Aman</a>
-        <a href="#kuis">Kuis</a>
-    </nav>
-
-    <section class="hero" id="beranda">
-        <h2>Berhenti Sejenak, Periksa Sebelum Klik!</h2>
-        <p>
-            Mari tingkatkan kesadaran tentang penipuan digital dan phishing.
-            Lindungi akun, uang, dan data pribadi dengan menjadi pengguna
-            internet yang lebih cerdas dan waspada.
-        </p>
-    </section>
-
-    <main class="container">
-
-        <section class="card">
-            <h2 class="section-title">Tentang Klik Cerdas</h2>
-            <p>
-                Klik Cerdas merupakan blog kampanye sosial yang bertujuan
-                meningkatkan kesadaran masyarakat mengenai bahaya penipuan
-                digital dan phishing. Blog ini menyediakan edukasi tentang
-                tautan palsu, penipuan berkedok hadiah, lowongan kerja palsu,
-                serta pencurian data pribadi.
-            </p>
-            <p>
-                Melalui artikel, tips keamanan, dan kuis interaktif, pengunjung
-                diharapkan mampu mengenali tanda-tanda penipuan online dan
-                melindungi informasi pribadinya. Website ini dibuat menggunakan
-                HTML, CSS, dan JavaScript serta dirancang agar dapat diakses
-                melalui laptop maupun smartphone.
-            </p>
-        </section>
-
-        <section class="card" id="phishing">
-            <h2 class="section-title">Apa Itu Phishing?</h2>
-            <p>
-                Phishing adalah tindakan penipuan digital yang berusaha
-                memperoleh informasi sensitif, seperti kata sandi, kode OTP,
-                atau data keuangan, dengan menyamar sebagai pihak yang tepercaya.
-                Pelaku biasanya menggunakan pesan, email, atau situs web palsu
-                untuk memperdaya korban.
-            </p>
-
-            <div class="warning">
-                <strong>Ingat!</strong>
-                Jangan mengeklik tautan mencurigakan atau memberikan kode OTP,
-                PIN, dan kata sandi kepada orang lain.
-            </div>
-        </section>
-
-        <section class="card">
-            <h2 class="section-title">Jenis Penipuan Digital</h2>
-
-            <h3>1. Tautan Palsu</h3>
-            <p>
-                Pelaku mengirimkan tautan yang menyerupai situs resmi untuk
-                mencuri informasi login atau data pribadi.
-            </p>
-
-            <h3>2. Penipuan Berkedok Hadiah</h3>
-            <p>
-                Korban diberi tahu bahwa dirinya memenangkan hadiah, lalu
-                diminta membayar biaya tertentu atau memberikan informasi rahasia.
-            </p>
-
-            <h3>3. Lowongan Kerja Palsu</h3>
-            <p>
-                Pelaku menawarkan pekerjaan dengan iming-iming gaji tinggi,
-                kemudian meminta uang atau dokumen pribadi secara tidak wajar.
-            </p>
-        </section>
-
-        <section class="card" id="tips">
-            <h2 class="section-title">Tips Melindungi Data Pribadi</h2>
-            <ol>
-                <li>Periksa alamat situs sebelum memasukkan informasi.</li>
-                <li>Jangan membagikan kode OTP, PIN, atau kata sandi.</li>
-                <li>Gunakan kata sandi yang kuat dan berbeda untuk setiap akun.</li>
-                <li>Aktifkan autentikasi dua faktor jika tersedia.</li>
-                <li>Verifikasi informasi melalui saluran resmi.</li>
-                <li>Hindari mengunduh file dari sumber yang tidak dikenal.</li>
-                <li>Segera hubungi bank atau penyedia layanan jika akun terancam.</li>
-            </ol>
-        </section>
-
-        <section class="card" id="kuis">
-            <h2 class="section-title">Kuis Keamanan Digital</h2>
-            <p>
-                Kamu menerima pesan yang meminta kode OTP dengan alasan
-                akun akan diblokir. Apa tindakan yang paling aman?
-            </p>
-
-            <button class="quiz-button"
-                onclick="periksaJawaban('A')">
-                A. Memberikan kode OTP
-            </button>
-            <br>
-
-            <button class="quiz-button"
-                onclick="periksaJawaban('B')">
-                B. Mengabaikan permintaan dan memeriksa melalui saluran resmi
-            </button>
-            <br>
-
-            <button class="quiz-button"
-                onclick="periksaJawaban('C')">
-                C. Meneruskan kode kepada teman
-            </button>
-
-            <p id="hasil-kuis" aria-live="polite"></p>
-        </section>
-
-        <section class="card">
-            <h2 class="section-title">Apa yang Harus Dilakukan Jika Tertipu?</h2>
-            <ul>
-                <li>Segera ganti kata sandi akun yang terdampak.</li>
-                <li>Hubungi bank atau penyedia layanan jika informasi keuangan terancam.</li>
-                <li>Simpan bukti percakapan, transaksi, dan tautan terkait.</li>
-                <li>Laporkan kejadian melalui kanal resmi yang sesuai.</li>
-                <li>Jangan mengirim uang tambahan kepada pelaku.</li>
-            </ul>
-        </section>
-
-        <section class="card">
-            <h2 class="section-title">Mari Sebarkan Kesadaran Digital!</h2>
-            <p>
-                Keamanan digital merupakan tanggung jawab bersama.
-                Bagikan informasi dari Klik Cerdas kepada teman dan keluarga
-                agar semakin banyak orang mampu mengenali penipuan online.
-            </p>
-        </section>
-
-    </main>
-
-    <footer>
-        <h3>Klik Cerdas</h3>
-        <p>Social Campaign: Waspada Penipuan Digital dan Phishing</p>
-        <p>Berhenti sejenak, periksa sebelum klik.</p>
-        <p>&copy; 2026 Klik Cerdas</p>
-    </footer>
-
-    <script>
-        function periksaJawaban(jawaban) {
-            const hasil = document.getElementById("hasil-kuis");
-
-            if (jawaban === "B") {
-                hasil.textContent =
-                    "Benar! Jangan pernah membagikan OTP. Periksa akun melalui saluran resmi.";
-                hasil.style.color = "green";
-            } else {
-                hasil.textContent =
-                    "Belum tepat. OTP bersifat rahasia dan tidak boleh dibagikan kepada siapa pun.";
-                hasil.style.color = "red";
-            }
-        }
-    </script>
-
-</body>
-</html>
+document.getElementById("year").textContent = new Date().getFullYear();
+renderQuestion();
