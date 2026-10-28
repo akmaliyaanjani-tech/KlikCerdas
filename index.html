@@ -1,10 +1,1261 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Klik Cerdas | Keamanan Digital</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --navy: #101b3d;
+  --blue: #3568f5;
+  --cyan: #7be5dc;
+  --ink: #17213b;
+  --muted: #68738b;
+  --line: #e4e9f3;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1140px, calc(100% - 44px));
+  margin: auto;
+}
+
+/* NAVIGASI */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255,255,255,.96);
+  border-bottom: 1px solid var(--line);
+}
+
+.navbar {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: Manrope, sans-serif;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.brand-icon {
+  background: var(--blue);
+  color: white;
+  padding: 7px 10px;
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+.brand-accent {
+  color: var(--blue);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  color: #59647b;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.nav-links a:hover {
+  color: var(--blue);
+}
+
+.nav-cta {
+  background: var(--navy);
+  color: white !important;
+  padding: 12px 17px;
+  border-radius: 12px;
+}
+
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: #f1f4fa;
+  padding: 9px 12px;
+  border-radius: 9px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* BERANDA */
+.hero {
+  background:
+    radial-gradient(circle at 82% 35%, #233a77, transparent 32%),
+    linear-gradient(120deg, #0d1735, #14234b 70%, #182d5a);
+  color: white;
+  padding: 80px 0 88px;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.08fr .92fr;
+  align-items: center;
+  gap: 45px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  color: var(--blue);
+  margin-bottom: 16px;
+}
+
+.hero .eyebrow {
+  color: var(--blue);
+}
+
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--cyan);
+  border-radius: 50%;
+  margin-right: 7px;
+}
+
+.hero h1 {
+  font-family: Manrope, sans-serif;
+  font-size: clamp(42px, 5vw, 65px);
+  line-height: 1.13;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+}
+
+.hero h1 span {
+  color: var(--cyan);
+}
+
+.hero-description {
+  color: #c6d0e9;
+  font-size: 17px;
+  max-width: 570px;
+  margin-bottom: 28px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 19px;
+  border: none;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button-primary {
+  background: var(--blue);
+  color: white;
+}
+
+.button-primary:hover {
+  background: #2458e6;
+}
+
+.button-secondary {
+  color: white;
+  border: 1px solid #45537a;
+  background: rgba(255,255,255,.04);
+}
+
+.hero-note {
+  margin-top: 25px;
+  color: #bdc8e1;
+  font-size: 13px;
+}
+
+.note-icon {
+  color: var(--cyan);
+  margin-right: 8px;
+}
+
+/* ILUSTRASI */
+.hero-visual {
+  height: 360px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.orbit {
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  border: 1px solid rgba(150,180,255,.18);
+  border-radius: 50%;
+}
+
+.orbit-two {
+  width: 270px;
+  height: 270px;
+  border-style: dashed;
+}
+
+.security-card {
+  z-index: 1;
+  width: 270px;
+  padding: 28px;
+  background: linear-gradient(145deg, #3b507f, #293d6c);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 25px;
+  box-shadow: 0 25px 70px rgba(0,0,0,.2);
+  transform: rotate(-4deg);
+}
+
+.shield {
+  display: grid;
+  place-items: center;
+  width: 65px;
+  height: 75px;
+  margin-bottom: 20px;
+  background: var(--cyan);
+  color: var(--navy);
+  font-size: 35px;
+  font-weight: 800;
+  clip-path: polygon(50% 0,92% 16%,86% 67%,50% 100%,14% 67%,8% 16%);
+}
+
+.visual-kicker {
+  color: #b9c8e7;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  font-weight: 800;
+}
+
+.security-card h2 {
+  font-family: Manrope, sans-serif;
+  font-size: 27px;
+  line-height: 1.2;
+  margin: 8px 0 20px;
+}
+
+.visual-line {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 17px;
+}
+
+.visual-line span {
+  height: 6px;
+  width: 35%;
+  border-radius: 5px;
+  background: #7189bf;
+}
+
+.visual-line span:first-child {
+  background: var(--cyan);
+  width: 45%;
+}
+
+.safe-label {
+  font-size: 12px;
+  color: #c6d4ee;
+}
+
+.floating-chip {
+  position: absolute;
+  z-index: 2;
+  background: white;
+  color: #1a2b52;
+  border-radius: 12px;
+  padding: 13px 15px;
+  box-shadow: 0 14px 35px #0002;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.chip-top {
+  top: 45px;
+  right: 0;
+  transform: rotate(4deg);
+}
+
+.chip-bottom {
+  bottom: 40px;
+  left: 0;
+  transform: rotate(-3deg);
+}
+
+/* PANDUAN SINGKAT */
+.quick-facts {
+  border-bottom: 1px solid var(--line);
+}
+
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 24px 0;
+}
+
+.facts-grid div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fact-number {
+  background: #edf2ff;
+  color: var(--blue);
+  padding: 7px 9px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.facts-grid p {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* KONTEN */
+.section {
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+
+.section-heading {
+  max-width: 690px;
+  margin-bottom: 38px;
+}
+
+.section-heading h2,
+.warning-grid h2,
+.closing-section h2 {
+  font-family: Manrope, sans-serif;
+  font-size: clamp(30px, 3.5vw, 45px);
+  line-height: 1.2;
+  letter-spacing: -1.4px;
+  margin-bottom: 17px;
+}
+
+.section-heading > p:last-child {
+  color: var(--muted);
+}
+
+.threat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.threat-card {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 27px 25px;
+  box-shadow: 0 9px 28px #192b5309;
+  transition: .2s;
+}
+
+.threat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 38px #192b5314;
+}
+
+.card-icon {
+  display: grid;
+  place-items: center;
+  width: 49px;
+  height: 49px;
+  border-radius: 15px;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.icon-purple {
+  background: #f0eaff;
+  color: #7853d6;
+}
+
+.icon-orange {
+  background: #fff0e2;
+  color: #e58a34;
+}
+
+.icon-blue {
+  background: #e7efff;
+  color: #3768e8;
+}
+
+.card-label {
+  color: #8791a7;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.threat-card h3 {
+  font-family: Manrope, sans-serif;
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+
+.threat-card > p:not(.card-label) {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.text-button {
+  border: none;
+  background: none;
+  color: var(--blue);
+  font-weight: 800;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.tip-reveal {
+  margin-top: 20px;
+  background: #eff4ff;
+  border-left: 4px solid var(--blue);
+  padding: 17px 20px;
+  border-radius: 0 12px 12px 0;
+}
+
+.tip-reveal[hidden] {
+  display: none;
+}
+
+/* TIPS KEAMANAN */
+.warning-section {
+  background: var(--navy);
+  color: white;
+  padding: 85px 0;
+}
+
+.warning-grid {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 70px;
+  align-items: start;
+}
+
+.eyebrow-light {
+  color: var(--cyan);
+}
+
+.warning-intro {
+  color: #bbc7e1;
+  margin-bottom: 25px;
+}
+
+.button-light {
+  background: white;
+  color: var(--navy);
+}
+
+.checklist {
+  display: grid;
+}
+
+.check-item {
+  display: grid;
+  grid-template-columns: 45px 1fr;
+  gap: 16px;
+  padding-bottom: 23px;
+  margin-bottom: 23px;
+  border-bottom: 1px solid #ffffff22;
+}
+
+.check-number {
+  display: grid;
+  place-items: center;
+  width: 39px;
+  height: 39px;
+  background: #7be5dc22;
+  color: var(--cyan);
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.check-item h3 {
+  font-family: Manrope, sans-serif;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.check-item p {
+  color: #b7c4df;
+  font-size: 14px;
+}
+
+/* KUIS */
+.quiz-box {
+  max-width: 790px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 20px 60px #1a2b510b;
+}
+
+.quiz-progress {
+  display: flex;
+  justify-content: space-between;
+  color: #77829a;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.progress-track {
+  height: 6px;
+  background: #edf0f7;
+  border-radius: 10px;
+  margin: 12px 0 27px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 33.33%;
+  background: var(--blue);
+  transition: .3s;
+}
+
+.quiz-box h3 {
+  font-family: Manrope, sans-serif;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.answer-list {
+  display: grid;
+  gap: 11px;
+}
+
+.answer-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: white;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+}
+
+.answer-option:hover:not(:disabled) {
+  border-color: #9db4ff;
+  background: #f8faff;
+}
+
+.option-letter {
+  display: grid;
+  place-items: center;
+  flex: 0 0 27px;
+  height: 27px;
+  background: #f0f3fa;
+  border-radius: 8px;
+  font-weight: 800;
+}
+
+.answer-option.correct {
+  border-color: #7cc9a2;
+  background: #f0fbf5;
+}
+
+.answer-option.incorrect {
+  border-color: #f0a0a0;
+  background: #fff5f5;
+}
+
+.quiz-feedback {
+  padding: 13px 15px;
+  border-radius: 11px;
+  background: #f1f5ff;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.quiz-feedback[hidden] {
+  display: none;
+}
+
+.quiz-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 24px;
+}
+
+.quiz-controls > span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+/* LAPORAN */
+.report-section {
+  background: linear-gradient(110deg, #315de0, #3c72f5);
+  color: white;
+  padding: 50px 0;
+}
+
+.report-box {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.report-symbol {
+  display: grid;
+  place-items: center;
+  flex: 0 0 58px;
+  height: 58px;
+  border: 2px solid #ffffff99;
+  border-radius: 50%;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.report-copy {
+  flex: 1;
+}
+
+.report-copy h2 {
+  font-family: Manrope, sans-serif;
+  font-size: 30px;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.report-copy p {
+  color: #e2e9ff;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.report-copy .report-disclaimer {
+  font-size: 12px;
+}
+
+/* PENUTUP */
+.closing-section {
+  text-align: center;
+  padding: 85px 0;
+}
+
+.closing-section h2 {
+  max-width: 700px;
+  margin: 0 auto 15px;
+}
+
+.closing-section > p:not(.eyebrow):not(.share-status) {
+  max-width: 590px;
+  margin: 0 auto 25px;
+  color: var(--muted);
+}
+
+.share-status {
+  color: #3c5caa;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+/* FOOTER */
+.site-footer {
+  background: #0b132b;
+  color: #dce4f8;
+  padding: 32px 0 17px;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding-bottom: 25px;
+}
+
+.footer-inner > p {
+  color: #a8b5d2;
+  font-size: 13px;
+  max-width: 440px;
+}
+
+.footer-tag {
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.footer-bottom {
+  border-top: 1px solid #ffffff1a;
+  padding-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #8f9dbb;
+  font-size: 12px;
+}
+
+/* TAMPILAN HP */
+@media (max-width: 900px) {
+  .hero-grid {
+    gap: 20px;
+  }
+
+  .hero-visual {
+    transform: scale(.9);
+  }
+
+  .nav-links {
+    gap: 15px;
+  }
+
+  .warning-grid {
+    gap: 35px;
+  }
+
+  .facts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .report-box {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .report-copy {
+    flex-basis: calc(100% - 85px);
+  }
+
+  .report-box > .button {
+    margin-left: 82px;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    width: calc(100% - 34px);
+  }
+
+  .navbar {
+    min-height: 68px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    padding: 18px 22px;
+    background: white;
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 9px;
+  }
+
+  .nav-cta {
+    text-align: center;
+  }
+
+  .hero {
+    padding: 55px 0 45px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 10vw, 54px);
+  }
+
+  .hero-description {
+    font-size: 15px;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    height: 300px;
+    transform: scale(.92);
+  }
+
+  .orbit {
+    width: 290px;
+    height: 290px;
+  }
+
+  .orbit-two {
+    width: 230px;
+    height: 230px;
+  }
+
+  .security-card {
+    width: 235px;
+    padding: 22px;
+  }
+
+  .chip-top {
+    right: 0;
+    top: 28px;
+  }
+
+  .chip-bottom {
+    left: 0;
+    bottom: 22px;
+  }
+
+  .facts-grid {
+    gap: 16px 10px;
+    padding: 19px 0;
+  }
+
+  .facts-grid p {
+    font-size: 12px;
+  }
+
+  .section {
+    padding-top: 65px;
+    padding-bottom: 65px;
+  }
+
+  .section-heading h2,
+  .warning-grid h2,
+  .closing-section h2 {
+    letter-spacing: -1px;
+  }
+
+  .threat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .threat-card {
+    padding: 23px;
+  }
+
+  .warning-section {
+    padding: 63px 0;
+  }
+
+  .warning-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .quiz-box {
+    padding: 20px 16px;
+  }
+
+  .quiz-box h3 {
+    font-size: 17px;
+  }
+
+  .quiz-controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .quiz-controls .button {
+    width: 100%;
+  }
+
+  .report-box {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 15px;
+  }
+
+  .report-symbol {
+    width: 46px;
+    height: 46px;
+    font-size: 23px;
+  }
+
+  .report-copy {
+    grid-column: 2;
+    min-width: 0;
+  }
+
+  .report-copy h2 {
+    font-size: 26px;
+  }
+
+  .report-box > .button {
+    grid-column: 2;
+    margin: 0;
+    width: fit-content;
+  }
+
+  .footer-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="navbar container">
+    <a class="brand" href="#beranda">
+      <span class="brand-icon">KC</span>
+      <span>Klik<span class="brand-accent">Cerdas</span></span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle"
+      aria-label="Buka menu" aria-expanded="false">☰</button>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#beranda">Beranda</a>
+      <a href="#kenali">Kenali Phishing</a>
+      <a href="#tips">Tips Aman</a>
+      <a href="#kuis">Kuis</a>
+      <a class="nav-cta" href="#lapor">Butuh Bantuan?</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="beranda">
+  <div class="container hero-grid">
+    <div>
+      <p class="eyebrow">
+        <span class="status-dot"></span>
+        KAMPANYE LITERASI DIGITAL
+      </p>
+
+      <h1>Berhenti sejenak.<br>
+        <span>Periksa sebelum klik.</span>
+      </h1>
+
+      <p class="hero-description">
+        Kenali phishing dan penipuan online agar akun, uang, dan data
+        pribadimu tetap aman. Satu klik yang cerdas bisa mencegah
+        banyak masalah.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button button-primary" href="#kenali">
+          Pelajari tanda bahayanya →
+        </a>
+        <a class="button button-secondary" href="#kuis">
+          Coba kuis keamanan
+        </a>
+      </div>
+
+      <p class="hero-note">
+        <span class="note-icon">✓</span>
+        Edukasi praktis untuk mahasiswa dan masyarakat umum
+      </p>
+    </div>
+
+    <div class="hero-visual">
+      <div class="orbit"></div>
+      <div class="orbit orbit-two"></div>
+
+      <div class="security-card">
+        <div class="shield">✓</div>
+        <p class="visual-kicker">KEAMANAN DIGITAL</p>
+        <h2>Lindungi data<br>pribadimu</h2>
+        <div class="visual-line">
+          <span></span><span></span><span></span>
+        </div>
+        <p class="safe-label">● Waspada itu penting</p>
+      </div>
+
+      <div class="floating-chip chip-top">🔒 Data pribadi</div>
+      <div class="floating-chip chip-bottom">⚠ Cek tautan dahulu</div>
+    </div>
+  </div>
+</section>
+
+<section class="quick-facts">
+  <div class="container facts-grid">
+    <div><span class="fact-number">01</span><p>Jangan terburu-buru</p></div>
+    <div><span class="fact-number">02</span><p>Periksa pengirim</p></div>
+    <div><span class="fact-number">03</span><p>Jangan bagikan OTP</p></div>
+    <div><span class="fact-number">04</span><p>Laporkan jika mencurigakan</p></div>
+  </div>
+</section>
+
+<section class="section container" id="kenali">
+  <div class="section-heading">
+    <p class="eyebrow">KENALI ANCAMANNYA</p>
+    <h2>Penipuan digital bisa terlihat meyakinkan.</h2>
+    <p>
+      Pelaku sering menyamar sebagai pihak tepercaya dan membuat korban
+      panik atau tergesa-gesa. Kenali beberapa bentuk yang umum ditemui.
+    </p>
+  </div>
+
+  <div class="threat-grid">
+    <article class="threat-card">
+      <div class="card-icon icon-purple">↗</div>
+      <p class="card-label">01 / TAUTAN PALSU</p>
+      <h3>Phishing</h3>
+      <p>Pesan atau situs palsu yang berusaha mencuri kata sandi, data kartu,
+        atau informasi pribadi.</p>
+      <button class="text-button" data-tip="Periksa alamat situs dengan teliti. Jangan masuk melalui tautan tak terduga. Buka situs resmi dengan mengetik alamatnya sendiri.">
+        Cara mengenali →
+      </button>
+    </article>
+
+    <article class="threat-card">
+      <div class="card-icon icon-orange">★</div>
+      <p class="card-label">02 / HADIAH PALSU</p>
+      <h3>Penipuan hadiah</h3>
+      <p>Pesan yang mengklaim kamu menang hadiah, tetapi meminta biaya,
+        data rahasia, atau tindakan cepat.</p>
+      <button class="text-button" data-tip="Jangan membayar biaya untuk hadiah yang tidak jelas. Verifikasi pengumuman melalui situs atau akun resmi penyelenggara.">
+        Cara mengenali →
+      </button>
+    </article>
+
+    <article class="threat-card">
+      <div class="card-icon icon-blue">⌕</div>
+      <p class="card-label">03 / LOWONGAN PALSU</p>
+      <h3>Penipuan lowongan kerja</h3>
+      <p>Tawaran kerja dengan gaji tidak masuk akal atau meminta transfer
+        uang dan data sensitif sejak awal.</p>
+      <button class="text-button" data-tip="Cari informasi perusahaan melalui kanal resmi. Waspadai permintaan transfer untuk proses rekrutmen.">
+        Cara mengenali →
+      </button>
+    </article>
+  </div>
+
+  <div class="tip-reveal" id="tipReveal" role="status" hidden></div>
+</section>
+
+<section class="warning-section" id="tips">
+  <div class="container warning-grid">
+    <div>
+      <p class="eyebrow eyebrow-light">INGAT 4 LANGKAH INI</p>
+      <h2>Jadikan keamanan digital sebagai kebiasaan.</h2>
+      <p class="warning-intro">
+        Kamu tidak harus ahli teknologi untuk melindungi diri.
+        Mulailah dari langkah sederhana berikut.
+      </p>
+      <a class="button button-light" href="#kuis">Uji pengetahuanmu →</a>
+    </div>
+
+    <div class="checklist">
+      <div class="check-item">
+        <span class="check-number">01</span>
+        <div>
+          <h3>Periksa pengirim dan alamat tautan</h3>
+          <p>Waspadai ejaan domain yang aneh, pesan mendesak,
+            dan lampiran tak terduga.</p>
+        </div>
+      </div>
+
+      <div class="check-item">
+        <span class="check-number">02</span>
+        <div>
+          <h3>Jangan pernah membagikan OTP atau PIN</h3>
+          <p>Kode rahasia harus dijaga dan tidak diberikan kepada orang lain.</p>
+        </div>
+      </div>
+
+      <div class="check-item">
+        <span class="check-number">03</span>
+        <div>
+          <h3>Gunakan kata sandi kuat dan unik</h3>
+          <p>Aktifkan autentikasi dua faktor jika tersedia.</p>
+        </div>
+      </div>
+
+      <div class="check-item">
+        <span class="check-number">04</span>
+        <div>
+          <h3>Verifikasi melalui kanal resmi</h3>
+          <p>Hubungi organisasi melalui nomor dan situs resmi yang kamu cari sendiri.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section container" id="kuis">
+  <div class="section-heading">
+    <p class="eyebrow">UJI PEMAHAMAN</p>
+    <h2>Apakah kamu bisa mengenali tanda penipuan?</h2>
+    <p>
+      Pilih jawaban paling aman untuk setiap situasi. Kuis ini berjalan
+      di browser dan tidak mengumpulkan data pribadi.
+    </p>
+  </div>
+
+  <div class="quiz-box">
+    <div class="quiz-progress">
+      <span id="questionCount">PERTANYAAN 1 DARI 3</span>
+      <span id="progressPercent">33%</span>
+    </div>
+
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <h3 id="questionText"></h3>
+    <div class="answer-list" id="answerList"></div>
+
+    <div class="quiz-feedback" id="quizFeedback"
+      role="status" hidden></div>
+
+    <div class="quiz-controls">
+      <span id="scoreText">Jawab dengan tenang dan teliti.</span>
+      <button class="button button-primary" id="nextQuestion" disabled>
+        Berikutnya →
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="report-section" id="lapor">
+  <div class="container report-box">
+    <div class="report-symbol">!</div>
+
+    <div class="report-copy">
+      <p class="eyebrow eyebrow-light">JIKA MENJADI KORBAN</p>
+      <h2>Tetap tenang, segera bertindak.</h2>
+      <p>
+        Hentikan komunikasi dengan pelaku, jangan kirim uang atau kode
+        tambahan, ganti kata sandi jika akun terancam, hubungi bank atau
+        penyedia layanan terkait, dan simpan bukti percakapan.
+      </p>
+      <p class="report-disclaimer">
+        Untuk pelaporan, gunakan kanal resmi yang relevan dan verifikasi
+        alamatnya terlebih dahulu. Jangan mengirimkan kata sandi atau OTP.
+      </p>
+    </div>
+
+    <a class="button button-light"
+       href="https://www.aduankonten.id/"
+       target="_blank" rel="noopener noreferrer">
+      Adukan konten ↗
+    </a>
+  </div>
+</section>
+
+<section class="closing-section container">
+  <p class="eyebrow">BAGIKAN KEPEDULIAN</p>
+  <h2>Satu informasi aman bisa melindungi orang lain.</h2>
+  <p>
+    Bagikan edukasi ini kepada teman dan keluarga.
+    Biasakan berhenti, memeriksa, lalu bertindak.
+  </p>
+  <button class="button button-primary" id="shareButton">
+    Bagikan kampanye ↗
+  </button>
+  <p class="share-status" id="shareStatus" role="status"></p>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <a class="brand" href="#beranda" style="color:white">
+      <span class="brand-icon">KC</span>
+      <span>Klik<span style="color:#7be5dc">Cerdas</span></span>
+    </a>
+    <p>Media edukasi kampanye sosial untuk meningkatkan kewaspadaan
+      terhadap penipuan digital.</p>
+    <span class="footer-tag">Berhenti • Periksa • Lindungi</span>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>© <span id="year"></span> Klik Cerdas</span>
+    <span>Dibuat untuk edukasi literasi digital.</span>
+  </div>
+</footer>
+
+<script>
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
 menuToggle.addEventListener("click", () => {
   const isOpen = navLinks.classList.toggle("open");
   menuToggle.setAttribute("aria-expanded", String(isOpen));
-  menuToggle.setAttribute("aria-label", isOpen ? "Tutup menu" : "Buka menu");
 });
 
 navLinks.querySelectorAll("a").forEach(link => {
@@ -27,35 +1278,35 @@ const questions = [
   {
     question: "Kamu menerima pesan bahwa akunmu akan diblokir jika tidak mengeklik tautan dalam 10 menit. Apa yang sebaiknya dilakukan?",
     answers: [
-      "Klik tautannya segera agar akun tidak diblokir.",
-      "Balas pesan dan kirim kode OTP untuk verifikasi.",
-      "Jangan klik; periksa akun melalui aplikasi atau situs resmi.",
-      "Teruskan pesan itu ke semua teman."
+      "Klik tautannya segera.",
+      "Kirim kode OTP untuk verifikasi.",
+      "Jangan klik; periksa melalui aplikasi atau situs resmi.",
+      "Teruskan pesan kepada semua teman."
     ],
     correct: 2,
-    explanation: "Benar. Pesan mendesak bisa menjadi taktik penipu. Buka aplikasi atau situs resmi secara mandiri untuk memeriksa status akun."
+    explanation: "Benar! Pesan mendesak bisa menjadi taktik penipu. Periksa akun melalui aplikasi atau situs resmi."
   },
   {
-    question: "Seseorang mengaku petugas bank dan meminta kode OTP melalui telepon. Apa tindakan paling aman?",
+    question: "Seseorang mengaku petugas bank dan meminta kode OTP. Apa tindakan paling aman?",
     answers: [
-      "Berikan OTP jika orang itu mengetahui nama lengkapmu.",
-      "Jangan berikan OTP; akhiri komunikasi dan hubungi bank melalui kanal resmi.",
-      "Kirim setengah kode OTP saja.",
-      "Kirim PIN agar identitasmu dapat dipastikan."
+      "Berikan OTP jika dia mengetahui nama lengkapmu.",
+      "Jangan berikan OTP dan hubungi bank melalui kanal resmi.",
+      "Kirim setengah kode OTP.",
+      "Kirim PIN agar identitasmu dipastikan."
     ],
     correct: 1,
-    explanation: "Tepat. OTP, PIN, dan kata sandi adalah rahasia. Jangan membagikannya kepada orang lain, termasuk orang yang mengaku petugas."
+    explanation: "OTP dan PIN bersifat rahasia. Jangan membagikannya kepada siapa pun."
   },
   {
-    question: "Kamu menemukan lowongan kerja dengan gaji sangat tinggi yang meminta biaya pendaftaran ke rekening pribadi. Apa yang sebaiknya dilakukan?",
+    question: "Lowongan kerja menawarkan gaji tinggi tetapi meminta biaya pendaftaran ke rekening pribadi. Apa yang dilakukan?",
     answers: [
-      "Transfer segera sebelum lowongan ditutup.",
-      "Kirim foto identitas dan data rekening terlebih dahulu.",
-      "Verifikasi perusahaan melalui kanal resmi dan jangan transfer sebelum jelas.",
-      "Percaya karena informasinya dibagikan di grup ramai."
+      "Segera transfer uang.",
+      "Kirim data rekening terlebih dahulu.",
+      "Verifikasi perusahaan dan jangan transfer sebelum jelas.",
+      "Percaya karena dibagikan di grup ramai."
     ],
     correct: 2,
-    explanation: "Benar. Verifikasi perusahaan melalui kanal resmi. Permintaan biaya atau data sensitif yang tidak wajar merupakan tanda bahaya."
+    explanation: "Verifikasi perusahaan melalui kanal resmi. Permintaan biaya yang tidak wajar adalah tanda bahaya."
   }
 ];
 
@@ -75,27 +1326,37 @@ const nextQuestion = document.getElementById("nextQuestion");
 function renderQuestion() {
   const q = questions[currentQuestion];
   answered = false;
-  questionCount.textContent = `PERTANYAAN ${currentQuestion + 1} DARI ${questions.length}`;
-  const progress = Math.round(((currentQuestion + 1) / questions.length) * 100);
+
+  questionCount.textContent =
+    `PERTANYAAN ${currentQuestion + 1} DARI ${questions.length}`;
+
+  const progress = Math.round(
+    ((currentQuestion + 1) / questions.length) * 100
+  );
+
   progressPercent.textContent = `${progress}%`;
   progressFill.style.width = `${progress}%`;
   questionText.textContent = q.question;
   answerList.replaceChildren();
   quizFeedback.hidden = true;
-  quizFeedback.textContent = "";
   scoreText.textContent = "Pilih jawaban yang paling aman.";
   nextQuestion.disabled = true;
-  nextQuestion.textContent = currentQuestion === questions.length - 1 ? "Lihat hasil →" : "Berikutnya →";
+  nextQuestion.textContent =
+    currentQuestion === questions.length - 1
+      ? "Lihat hasil →" : "Berikutnya →";
 
   q.answers.forEach((answer, index) => {
     const button = document.createElement("button");
     button.className = "answer-option";
     button.type = "button";
+
     const letter = document.createElement("span");
     letter.className = "option-letter";
     letter.textContent = String.fromCharCode(65 + index);
+
     const label = document.createElement("span");
     label.textContent = answer;
+
     button.append(letter, label);
     button.addEventListener("click", () => selectAnswer(index));
     answerList.append(button);
@@ -105,12 +1366,16 @@ function renderQuestion() {
 function selectAnswer(selected) {
   if (answered) return;
   answered = true;
+
   const q = questions[currentQuestion];
   const options = answerList.querySelectorAll("button");
+
   options.forEach((button, index) => {
     button.disabled = true;
     if (index === q.correct) button.classList.add("correct");
-    if (index === selected && index !== q.correct) button.classList.add("incorrect");
+    if (index === selected && index !== q.correct) {
+      button.classList.add("incorrect");
+    }
   });
 
   if (selected === q.correct) {
@@ -119,13 +1384,16 @@ function selectAnswer(selected) {
   } else {
     quizFeedback.textContent = `Belum tepat. ${q.explanation}`;
   }
+
   quizFeedback.hidden = false;
-  scoreText.textContent = `Skor sementara: ${score} dari ${currentQuestion + 1}`;
+  scoreText.textContent =
+    `Skor sementara: ${score} dari ${currentQuestion + 1}`;
   nextQuestion.disabled = false;
 }
 
 nextQuestion.addEventListener("click", () => {
   if (!answered) return;
+
   if (currentQuestion < questions.length - 1) {
     currentQuestion++;
     renderQuestion();
@@ -141,14 +1409,19 @@ function showResult() {
   questionText.textContent = `Skor kamu ${score} dari ${questions.length}.`;
   answerList.replaceChildren();
   quizFeedback.hidden = false;
+
   if (score === questions.length) {
-    quizFeedback.textContent = "Hebat! Kamu mengenali semua situasi dalam kuis ini. Tetap periksa informasi dan jangan pernah membagikan kode rahasia.";
+    quizFeedback.textContent =
+      "Hebat! Kamu mengenali semua situasi dalam kuis ini. Tetap waspada.";
   } else if (score >= 2) {
-    quizFeedback.textContent = "Bagus! Kamu sudah memahami sebagian besar tanda bahaya. Baca kembali tips keamanan dan coba lagi jika ingin berlatih.";
+    quizFeedback.textContent =
+      "Bagus! Baca kembali tips keamanan dan terus berlatih.";
   } else {
-    quizFeedback.textContent = "Tidak apa-apa—kuis ini untuk belajar. Baca bagian Tips Aman, lalu ulangi kuis agar semakin terbiasa mengenali tanda penipuan.";
+    quizFeedback.textContent =
+      "Ayo pelajari kembali Tips Aman, lalu ulangi kuis.";
   }
-  scoreText.textContent = "Kuis berjalan di perangkatmu; jawaban tidak dikirim ke server.";
+
+  scoreText.textContent = "Jawaban tidak dikirim ke server.";
   nextQuestion.textContent = "Ulangi kuis ↻";
   nextQuestion.disabled = false;
   nextQuestion.onclick = () => {
@@ -165,21 +1438,33 @@ document.getElementById("shareButton").addEventListener("click", async () => {
     text: "Yuk, kenali phishing dan penipuan digital. Berhenti sejenak, periksa sebelum klik!",
     url: window.location.href
   };
+
   const status = document.getElementById("shareStatus");
+
   try {
     if (navigator.share) {
       await navigator.share(shareData);
-      status.textContent = "Terima kasih telah membantu menyebarkan edukasi keamanan digital.";
+      status.textContent = "Terima kasih telah membagikan edukasi ini.";
     } else if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
-      status.textContent = "Teks kampanye dan tautan berhasil disalin. Bagikan kepada teman dan keluarga.";
+      await navigator.clipboard.writeText(
+        `${shareData.text} ${shareData.url}`
+      );
+      status.textContent = "Teks kampanye dan tautan berhasil disalin.";
     } else {
-      status.textContent = "Salin alamat halaman ini dari bilah alamat browser, lalu bagikan kepada teman.";
+      status.textContent =
+        "Salin alamat halaman dari browser untuk membagikan kampanye.";
     }
   } catch (error) {
-    if (error.name !== "AbortError") status.textContent = "Kamu bisa menyalin alamat halaman ini dan membagikannya secara manual.";
+    if (error.name !== "AbortError") {
+      status.textContent =
+        "Kamu dapat menyalin alamat halaman dan membagikannya manual.";
+    }
   }
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
 renderQuestion();
+</script>
+
+</body>
+</html>
