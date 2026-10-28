@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klik Cerdas - Waspada Penipuan Digital</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            color: #26334d;
+            line-height: 1.7;
+        }
+
+        header {
+            background-color: #14264b;
+            color: white;
+            padding: 25px 8%;
+        }
+
+        header h1 {
+            font-size: 32px;
+        }
+
+        header p {
+            color: #b9d9ff;
+        }
+
+        nav {
+            background-color: #203b70;
+            padding: 14px 8%;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 22px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #75e3dc;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1b3470, #3978df);
+            color: white;
+            text-align: center;
+            padding: 65px 20px;
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            color: #19366b;
+            margin-bottom: 18px;
+            font-size: 27px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(20, 38, 75, 0.08);
+        }
+
+        .card h3 {
+            color: #2459ad;
+            margin-bottom: 10px;
+        }
+
+        .card ul,
+        .card ol {
+            padding-left: 22px;
+        }
+
+        .warning {
+            background: #fff4e5;
+            border-left: 5px solid #f0a43b;
+            padding: 18px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .quiz-button {
+            background: #2865d7;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 7px;
+            cursor: pointer;
+            margin-top: 12px;
+            font-size: 15px;
+        }
+
+        .quiz-button:hover {
+            background: #194ba9;
+        }
+
+        #hasil-kuis {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #14264b;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 45px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 26px;
+            }
+
+            .hero h2 {
+                font-size: 28px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px 12px 5px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Klik Cerdas</h1>
+        <p>Kenali Penipuan Sebelum Menjadi Korban</p>
+    </header>
+
+    <nav>
+        <a href="#beranda">Beranda</a>
+        <a href="#phishing">Kenali Phishing</a>
+        <a href="#tips">Tips Aman</a>
+        <a href="#kuis">Kuis</a>
+    </nav>
+
+    <section class="hero" id="beranda">
+        <h2>Berhenti Sejenak, Periksa Sebelum Klik!</h2>
+        <p>
+            Mari tingkatkan kesadaran tentang penipuan digital dan phishing.
+            Lindungi akun, uang, dan data pribadi dengan menjadi pengguna
+            internet yang lebih cerdas dan waspada.
+        </p>
+    </section>
+
+    <main class="container">
+
+        <section class="card">
+            <h2 class="section-title">Tentang Klik Cerdas</h2>
+            <p>
+                Klik Cerdas merupakan blog kampanye sosial yang bertujuan
+                meningkatkan kesadaran masyarakat mengenai bahaya penipuan
+                digital dan phishing. Blog ini menyediakan edukasi tentang
+                tautan palsu, penipuan berkedok hadiah, lowongan kerja palsu,
+                serta pencurian data pribadi.
+            </p>
+            <p>
+                Melalui artikel, tips keamanan, dan kuis interaktif, pengunjung
+                diharapkan mampu mengenali tanda-tanda penipuan online dan
+                melindungi informasi pribadinya. Website ini dibuat menggunakan
+                HTML, CSS, dan JavaScript serta dirancang agar dapat diakses
+                melalui laptop maupun smartphone.
+            </p>
+        </section>
+
+        <section class="card" id="phishing">
+            <h2 class="section-title">Apa Itu Phishing?</h2>
+            <p>
+                Phishing adalah tindakan penipuan digital yang berusaha
+                memperoleh informasi sensitif, seperti kata sandi, kode OTP,
+                atau data keuangan, dengan menyamar sebagai pihak yang tepercaya.
+                Pelaku biasanya menggunakan pesan, email, atau situs web palsu
+                untuk memperdaya korban.
+            </p>
+
+            <div class="warning">
+                <strong>Ingat!</strong>
+                Jangan mengeklik tautan mencurigakan atau memberikan kode OTP,
+                PIN, dan kata sandi kepada orang lain.
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title">Jenis Penipuan Digital</h2>
+
+            <h3>1. Tautan Palsu</h3>
+            <p>
+                Pelaku mengirimkan tautan yang menyerupai situs resmi untuk
+                mencuri informasi login atau data pribadi.
+            </p>
+
+            <h3>2. Penipuan Berkedok Hadiah</h3>
+            <p>
+                Korban diberi tahu bahwa dirinya memenangkan hadiah, lalu
+                diminta membayar biaya tertentu atau memberikan informasi rahasia.
+            </p>
+
+            <h3>3. Lowongan Kerja Palsu</h3>
+            <p>
+                Pelaku menawarkan pekerjaan dengan iming-iming gaji tinggi,
+                kemudian meminta uang atau dokumen pribadi secara tidak wajar.
+            </p>
+        </section>
+
+        <section class="card" id="tips">
+            <h2 class="section-title">Tips Melindungi Data Pribadi</h2>
+            <ol>
+                <li>Periksa alamat situs sebelum memasukkan informasi.</li>
+                <li>Jangan membagikan kode OTP, PIN, atau kata sandi.</li>
+                <li>Gunakan kata sandi yang kuat dan berbeda untuk setiap akun.</li>
+                <li>Aktifkan autentikasi dua faktor jika tersedia.</li>
+                <li>Verifikasi informasi melalui saluran resmi.</li>
+                <li>Hindari mengunduh file dari sumber yang tidak dikenal.</li>
+                <li>Segera hubungi bank atau penyedia layanan jika akun terancam.</li>
+            </ol>
+        </section>
+
+        <section class="card" id="kuis">
+            <h2 class="section-title">Kuis Keamanan Digital</h2>
+            <p>
+                Kamu menerima pesan yang meminta kode OTP dengan alasan
+                akun akan diblokir. Apa tindakan yang paling aman?
+            </p>
+
+            <button class="quiz-button"
+                onclick="periksaJawaban('A')">
+                A. Memberikan kode OTP
+            </button>
+            <br>
+
+            <button class="quiz-button"
+                onclick="periksaJawaban('B')">
+                B. Mengabaikan permintaan dan memeriksa melalui saluran resmi
+            </button>
+            <br>
+
+            <button class="quiz-button"
+                onclick="periksaJawaban('C')">
+                C. Meneruskan kode kepada teman
+            </button>
+
+            <p id="hasil-kuis" aria-live="polite"></p>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title">Apa yang Harus Dilakukan Jika Tertipu?</h2>
+            <ul>
+                <li>Segera ganti kata sandi akun yang terdampak.</li>
+                <li>Hubungi bank atau penyedia layanan jika informasi keuangan terancam.</li>
+                <li>Simpan bukti percakapan, transaksi, dan tautan terkait.</li>
+                <li>Laporkan kejadian melalui kanal resmi yang sesuai.</li>
+                <li>Jangan mengirim uang tambahan kepada pelaku.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title">Mari Sebarkan Kesadaran Digital!</h2>
+            <p>
+                Keamanan digital merupakan tanggung jawab bersama.
+                Bagikan informasi dari Klik Cerdas kepada teman dan keluarga
+                agar semakin banyak orang mampu mengenali penipuan online.
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        <h3>Klik Cerdas</h3>
+        <p>Social Campaign: Waspada Penipuan Digital dan Phishing</p>
+        <p>Berhenti sejenak, periksa sebelum klik.</p>
+        <p>&copy; 2026 Klik Cerdas</p>
+    </footer>
+
+    <script>
+        function periksaJawaban(jawaban) {
+            const hasil = document.getElementById("hasil-kuis");
+
+            if (jawaban === "B") {
+                hasil.textContent =
+                    "Benar! Jangan pernah membagikan OTP. Periksa akun melalui saluran resmi.";
+                hasil.style.color = "green";
+            } else {
+                hasil.textContent =
+                    "Belum tepat. OTP bersifat rahasia dan tidak boleh dibagikan kepada siapa pun.";
+                hasil.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>
